@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foot_gear/categoriesScreen.dart';
+import './categoriesScreen.dart';
+import './try_on_shoes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,12 @@ class MyApp extends StatelessWidget {
               fontFamily: 'RobotoCondensed',
             )),
       ),
-      home: const MyHomePage(title: 'Foot Gear'),
+      // home: const MyHomePage(title: 'Foot Gear'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const MyHomePage(title: 'Foot Gear'),
+        tryOnShoes.routeName: (context) => tryOnShoes()
+      },
     );
   }
 }
