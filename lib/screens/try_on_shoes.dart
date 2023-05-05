@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:foot_gear/models/shoe.dart';
 import '../dummy_data.dart';
 import '../widgets/shoe_item.dart';
+import '../components/tryOnAppbar.dart';
 
 class TryOnShoes extends StatelessWidget {
   static const routeName = '/try-On-Shoes';
@@ -39,7 +39,7 @@ class TryOnShoes extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(categoryTitle!),
+          title: customAppBarDe(context), automaticallyImplyLeading: false,
         ),
         body: ShoeItem(imageUrl: imageUrl, snapchatUrl: snapchatUrl,)
 

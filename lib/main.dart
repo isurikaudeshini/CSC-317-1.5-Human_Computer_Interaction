@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/categoriesScreen.dart';
 import 'screens/try_on_shoes.dart';
 import 'screens/feetSizePrediction.dart';
+import 'components/homeAppbar.dart';
 import './colors.dart';
 
 void main() {
@@ -17,8 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Foot Gear',
       theme: ThemeData(
-        primarySwatch: darkBlueSwatch,
-        canvasColor: const Color.fromARGB(255, 239, 234, 206),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
             bodyLarge: const TextStyle(color: Colors.black),
@@ -51,9 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: customAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
