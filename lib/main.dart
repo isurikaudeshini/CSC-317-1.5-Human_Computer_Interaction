@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/categoriesScreen.dart';
 import 'screens/try_on_shoes.dart';
+import 'screens/feetSizePrediction.dart';
 import './colors.dart';
 
 void main() {
@@ -17,12 +18,12 @@ class MyApp extends StatelessWidget {
       title: 'Foot Gear',
       theme: ThemeData(
         primarySwatch: darkBlueSwatch,
-        canvasColor: Color.fromARGB(255, 239, 234, 206),
+        canvasColor: const Color.fromARGB(255, 239, 234, 206),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
-            bodyLarge: TextStyle(color: Colors.black),
-            bodyMedium: TextStyle(color: Colors.black),
-            titleLarge: TextStyle(
+            bodyLarge: const TextStyle(color: Colors.black),
+            bodyMedium: const TextStyle(color: Colors.black),
+            titleLarge: const TextStyle(
               fontSize: 24,
               fontFamily: 'RobotoCondensed',
             )),
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePage(title: 'Foot Gear'),
-        tryOnShoes.routeName: (context) => tryOnShoes()
+        TryOnShoes.routeName: (context) => TryOnShoes(),
       },
     );
   }
@@ -39,11 +40,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -67,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             child: Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -76,7 +70,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SizePrediction(
+                                    title: 'title',
+                                  )),
+                        );
+                      },
                       child: const Text("Check Size"),
                     ),
                     Card(
@@ -84,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(80),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     ElevatedButton(

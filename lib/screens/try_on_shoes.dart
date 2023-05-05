@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
 import 'package:foot_gear/models/shoe.dart';
 import '../dummy_data.dart';
 import '../widgets/shoe_item.dart';
 
-class tryOnShoes extends StatelessWidget {
+class TryOnShoes extends StatelessWidget {
   static const routeName = '/try-On-Shoes';
+
+  const TryOnShoes({super.key});
   // final String categoryId;
   // final String categoryTitle;
 
