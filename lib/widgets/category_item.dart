@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
-import 'package:foot_gear/try_on_shoes.dart';
+import 'package:foot_gear/screens/try_on_shoes.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;
