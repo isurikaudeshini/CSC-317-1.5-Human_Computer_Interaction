@@ -15,35 +15,8 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late StreamSubscription subcription;
-
-  var isDeviceConnected = false;
-
-  bool isAlertSet = false;
-
-  @override
-  void initState() {
-    getConnectivity();
-    super.initState();
-  }
-
-  getConnectivity() => subcription = Connectivity()
-          .onConnectivityChanged
-          .listen((ConnectivityResult result) async {
-        isDeviceConnected = await InternetConnectionChecker().hasConnection;
-        if (!isDeviceConnected && isAlertSet == false) {
-          showDialogBox();
-          setState(() => isAlertSet = true);
-        }
-      });
 
   // This widget is the root of your application.
   @override
@@ -69,29 +42,6 @@ class _MyAppState extends State<MyApp> {
       },
     );
   }
-
-  showDialogBox() => showCupertinoDialog<String>(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('No Connection'),
-          content: const Text('Please check your internet connectivity'),
-          actions: <Widget>[
-            TextButton(
-                onPressed: () async {
-                  Navigator.pop(context, 'Cancel');
-                  setState(() => isAlertSet = false);
-                  isDeviceConnected =
-                      await InternetConnectionChecker().hasConnection;
-                  if (!isDeviceConnected) {
-                    showDialogBox();
-                    print('not connected');
-                    setState(() => isAlertSet = true);
-                  }
-                },
-                child: const Text('OK')),
-          ],
-        ),
-      );
 }
 
 class MyHomePage extends StatefulWidget {
