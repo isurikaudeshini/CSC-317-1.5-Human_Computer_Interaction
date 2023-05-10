@@ -231,6 +231,7 @@ flutter:
     - assets/images/shoe8.png
     - assets/images/shoe9.png
     - assets/images/shoe10.png
+    - assets/images/collaboration.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

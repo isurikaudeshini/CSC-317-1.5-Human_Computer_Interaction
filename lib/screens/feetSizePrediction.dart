@@ -41,10 +41,11 @@ class _SizePredictionState extends State<SizePrediction> {
       setState(() {
         isLoading = false;
         _textData = value;
+        parsedValue = double.parse(_textData!.split(":")[1].trim());
       });
     });
 
-    parsedValue = double.parse(_textData!.split(":")[1].trim());
+    
   }
 
   Future pickImage(ImageSource source) async {
@@ -175,20 +176,20 @@ class _SizePredictionState extends State<SizePrediction> {
                             color: Colors.white,
                             size: 35.0,
                           )
-                        : DataTable(columns: [
+                        : DataTable(columns: const [
                             DataColumn(label: Text('Unit')),
                             DataColumn(label: Text('Value'))
                           ], rows: [
                             DataRow(cells: [
-                              DataCell(Text('US')),
+                              const DataCell(Text('US')),
                               DataCell(Text(getUS(parsedValue!).toString()))
                             ]),
                             DataRow(cells: [
-                              DataCell(Text('Euro')),
+                              const DataCell(Text('Euro')),
                               DataCell(Text(getEURO(parsedValue!).toString()))
                             ]),
                             DataRow(cells: [
-                              DataCell(Text('UK')),
+                              const DataCell(Text('UK')),
                               DataCell(Text(getEURO(parsedValue!).toString()))
                             ]),
                           ]),

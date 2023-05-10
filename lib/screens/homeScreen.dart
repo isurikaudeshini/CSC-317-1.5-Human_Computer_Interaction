@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/categoriesScreen.dart';
 import '../screens/try_on_shoes.dart';
+import '../components/homeBackground.dart';
 import '../screens/feetSizePrediction.dart';
 import '../components/homeAppbar.dart';
 
