@@ -60,7 +60,7 @@ const DUMMY_CATEGORIES = [
   ),
   Category(
     id: 'c10',
-    title: 'Buckle Shoes',
+    title: 'Buckle Shoe',
     imageUrl: ('assets/images/shoe10.png'),
     //   color: Colors.teal,
   ),

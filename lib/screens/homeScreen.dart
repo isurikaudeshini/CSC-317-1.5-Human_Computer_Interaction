@@ -71,11 +71,11 @@ class _MyHomeState extends State<MyHome> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(left: 40.0, bottom: 10),
+                  padding: EdgeInsets.only(left: 40.0, bottom: 7),
                   child: Text(
-                    'Heyy THere!',
+                    'Hey There!',
                     style: TextStyle(
-                        fontSize: 30, color: Color.fromARGB(255, 74, 35, 90)),
+                        fontSize: 38, color: Color.fromARGB(255, 74, 35, 90)),
                   ),
                 ),
                 SizedBox(
