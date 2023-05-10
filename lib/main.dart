@@ -50,7 +50,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int myIndex = 0;
   int index = 0;
-  List<Widget> widgetList = [ MyHome(),CategoriesScreen(),SizePrediction(title: 'Check Size')];
+  List<Widget> widgetList = [const MyHome(),CategoriesScreen(),SizePrediction(title: 'Check Size')];
 
   @override
   Widget build(BuildContext context) {

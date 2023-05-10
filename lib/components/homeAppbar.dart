@@ -7,7 +7,7 @@ import '../../../utils/constants.dart';
 
 PreferredSize? customAppBar() {
   return PreferredSize(
-    preferredSize: Size.fromHeight(70),
+    preferredSize: Size.fromHeight(20),
     child: AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
