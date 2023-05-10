@@ -6,27 +6,30 @@ const List<Color> gradients = [
   Color(0xFF03A0FE),
 ];
 
-final _url =
-    'https://lens.snapchat.com/4394187f0b4c428c913656befdfcc633?share_id=BBCCa9fseJ4&locale=en-GB';
-
 class ShoeItem extends StatelessWidget {
   final String imageUrl;
   final String snapchatUrl;
+  final String price;
+  final String brand;
+  final String color;
 
-  const ShoeItem({required this.imageUrl, required this.snapchatUrl});
+  const ShoeItem({
+    required this.imageUrl,
+    required this.snapchatUrl,
+    required this.price,
+    required this.brand,
+    required this.color,
+  });
 
   Future _launchUrl() async {
     if (!await launch(snapchatUrl)) {
-      throw Exception('Could not luanch $_url');
+      throw Exception('Could not luanch $snapchatUrl');
     }
   }
-
-  void selectShoe() {}
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectShoe,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -36,6 +39,7 @@ class ShoeItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
+              padding: EdgeInsets.all(30),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1.0)),
               child: ClipRRect(
@@ -47,13 +51,37 @@ class ShoeItem extends StatelessWidget {
                 ),
               ),
             ),
-
-            // OutlinedButton(
-            //   onPressed: _launchUrl,
-            //   child: const Text('Try AR filter'),
-            // ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            Container(
+              width: 250,
+              height: 140,
+              decoration:
+                  BoxDecoration(color: Color.fromARGB(255, 230, 235, 240)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(9),
+                    child: Text('Price: $price', textScaleFactor: 1.3),
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: EdgeInsets.all(9),
+                    child: Text('Brand: $brand', textScaleFactor: 1.3),
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: EdgeInsets.all(9),
+                    child: Text('Colour: $color', textScaleFactor: 1.3),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             GestureDetector(
               onTap: _launchUrl,

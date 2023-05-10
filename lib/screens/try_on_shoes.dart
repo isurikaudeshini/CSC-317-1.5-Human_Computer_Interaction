@@ -21,15 +21,21 @@ class TryOnShoes extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
-    final categoryImage = routeArgs['image'];
 
     String imageUrl = '';
     String snapchatUrl = '';
+    String price = '';
+    String brand = '';
+    String color = '';
 
     for (var shoe in DUMMY_SHOES) {
       if (shoe.id == categoryId) {
         imageUrl = shoe.imageUrl;
         snapchatUrl = shoe.snapchatUrl;
+        price = shoe.price;
+        brand = shoe.brand;
+        color = shoe.color;
+
         break;
       }
     }
@@ -44,12 +50,19 @@ class TryOnShoes extends StatelessWidget {
           elevation: 0,
           backgroundColor: Color(0xFF1976D2),
           centerTitle: true,
-          title: Text(categoryTitle!, style: AppThemes.detailsAppBar,),
+          title: Text(
+            categoryTitle!,
+            style: AppThemes.detailsAppBar,
+          ),
           // automaticallyImplyLeading: false,
         ),
         body: ShoeItem(
           imageUrl: imageUrl,
           snapchatUrl: snapchatUrl,
+          price: price,
+          brand: brand,
+          color: color,
+
         )
 
         // Center(
