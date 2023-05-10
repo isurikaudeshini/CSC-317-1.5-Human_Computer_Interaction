@@ -133,7 +133,6 @@ class _MyHomeState extends State<MyHome> {
                       await InternetConnectionChecker().hasConnection;
                   if (!isDeviceConnected && isAlertSet == false) {
                     showDialogBox();
-                    print('not connected');
                     setState(() => isAlertSet = true);
                   }
                 },
