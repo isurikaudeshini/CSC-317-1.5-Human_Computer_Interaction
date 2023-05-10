@@ -23,6 +23,7 @@ class SizePrediction extends StatefulWidget {
 class _SizePredictionState extends State<SizePrediction> {
   File? imageFile;
   String? _textData;
+  double? parsedValue;
   bool isLoading = false;
 
   Future sendImageToServer() async {
@@ -42,6 +43,8 @@ class _SizePredictionState extends State<SizePrediction> {
         _textData = value;
       });
     });
+
+    parsedValue = double.parse(_textData!.split(":")[1].trim());
   }
 
   Future pickImage(ImageSource source) async {
@@ -70,7 +73,7 @@ class _SizePredictionState extends State<SizePrediction> {
     }
   }
 
-    Future<File> compressImage(String path, int quality) async {
+  Future<File> compressImage(String path, int quality) async {
     final newPath = p.join((await getTemporaryDirectory()).path,
         '${DateTime.now()}.${p.extension(path)}');
 
@@ -80,13 +83,73 @@ class _SizePredictionState extends State<SizePrediction> {
     return result!;
   }
 
+  double getUS(double cm) {
+    if (cm <= 23.5) return 6;
+    if (cm <= 24.1) return 6.5;
+    if (cm <= 24.4) return 7;
+    if (cm <= 24.8) return 7.5;
+    if (cm <= 25.4) return 8;
+    if (cm <= 25.7) return 8.5;
+    if (cm <= 26) return 9;
+    if (cm <= 26.7) return 9.5;
+    if (cm <= 27) return 10;
+    if (cm <= 27.3) return 10.5;
+    if (cm <= 27.9) return 11;
+    if (cm <= 28.3) return 11.5;
+    if (cm <= 28.6) return 12;
+    if (cm <= 29.4) return 13;
+    if (cm <= 30.2) return 14;
+    if (cm <= 31) return 15;
+    return -1;
+  }
+
+  double getEURO(double cm) {
+    if (cm <= 23.5) return 39;
+    if (cm <= 24.1) return 39;
+    if (cm <= 24.4) return 40;
+    if (cm <= 24.8) return 40.5;
+    if (cm <= 25.4) return 41;
+    if (cm <= 25.7) return 41.5;
+    if (cm <= 26) return 42;
+    if (cm <= 26.7) return 42.5;
+    if (cm <= 27) return 43.5;
+    if (cm <= 27.3) return 43.75;
+    if (cm <= 27.9) return 44.5;
+    if (cm <= 28.3) return 44.5;
+    if (cm <= 28.6) return 45.5;
+    if (cm <= 29.4) return 46.5;
+    if (cm <= 30.2) return 47.5;
+    if (cm <= 31) return 48.5;
+    return -1;
+  }
+
+  double getUK(double cm) {
+    if (cm <= 23.5) return 5.5;
+    if (cm <= 24.1) return 6;
+    if (cm <= 24.4) return 6.5;
+    if (cm <= 24.8) return 7;
+    if (cm <= 25.4) return 7.5;
+    if (cm <= 25.7) return 8;
+    if (cm <= 26) return 8.5;
+    if (cm <= 26.7) return 9;
+    if (cm <= 27) return 9.5;
+    if (cm <= 27.3) return 10;
+    if (cm <= 27.9) return 10.5;
+    if (cm <= 28.3) return 11;
+    if (cm <= 28.6) return 11.5;
+    if (cm <= 29.4) return 12.5;
+    if (cm <= 30.2) return 13.5;
+    if (cm <= 31) return 14.5;
+    return -1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      backgroundColor: const Color(0xFF03a9f4),
+      backgroundColor: Color.fromARGB(255, 229, 232, 234),
       body: Column(
         children: [
           const Spacer(),
@@ -112,7 +175,24 @@ class _SizePredictionState extends State<SizePrediction> {
                             color: Colors.white,
                             size: 35.0,
                           )
-                        : Text(_textData!),
+                        : DataTable(columns: [
+                            DataColumn(label: Text('Unit')),
+                            DataColumn(label: Text('Value'))
+                          ], rows: [
+                            DataRow(cells: [
+                              DataCell(Text('US')),
+                              DataCell(Text(getUS(parsedValue!).toString()))
+                            ]),
+                            DataRow(cells: [
+                              DataCell(Text('Euro')),
+                              DataCell(Text(getEURO(parsedValue!).toString()))
+                            ]),
+                            DataRow(cells: [
+                              DataCell(Text('UK')),
+                              DataCell(Text(getEURO(parsedValue!).toString()))
+                            ]),
+                          ]),
+                    Text(parsedValue.toString()),
                   ],
                 ),
           const Spacer(),
