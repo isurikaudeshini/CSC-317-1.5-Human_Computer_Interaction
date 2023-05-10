@@ -17,11 +17,8 @@ class CategoriesScreen extends StatelessWidget {
         body: ListView(
           scrollDirection: Axis.vertical,
           children: DUMMY_CATEGORIES
-              .map((catData) => CategoryItem(
-                    catData.id,
-                    catData.title,
-                    catData.imageUrl
-                  ))
+              .map((catData) =>
+                  CategoryItem(catData.id, catData.title, catData.imageUrl))
               .toList(),
         )
 

@@ -18,41 +18,30 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () => selectCategory(context),
-        splashColor: Theme.of(context).primaryColor,
-        child: Padding(
-          padding: EdgeInsets.all(40.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Color.fromARGB(255, 105, 170, 224),
-                borderRadius: BorderRadius.circular(10)),
-            child: Image.asset(imageUrl),
-            width: 200,
-            height: 200,
-          ),
-        ));
-
-    // InkWell(
-    //   onTap: () => selectCategory(context),
-    //   splashColor: Theme.of(context).primaryColor,
-    //   borderRadius: BorderRadius.circular(15),
-    //   child: Container(
-    //     padding: const EdgeInsets.all(15),
-    //     child: Text(
-    //       title,
-    //       style: Theme.of(context).textTheme.titleLarge,
-    //     ),
-    //     decoration: BoxDecoration(
-    //         gradient: LinearGradient(
-    //           colors: [
-    //             Colors.orange.withOpacity(0.01),
-    //             Colors.orange,
-    //           ],
-    //           begin: Alignment.topLeft,
-    //           end: Alignment.bottomRight,
-    //         ),
-    //         borderRadius: BorderRadius.circular(15)),
-    //   ),
-    // );
+      onTap: () => selectCategory(context),
+      splashColor: Theme.of(context).primaryColor,
+      child: Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 105, 170, 224),
+                  borderRadius: BorderRadius.circular(10)),
+              child: ClipRect(
+                child: Image.asset(imageUrl),
+              ),
+              // width: 200,
+              // height: 200,
+            ),
+            SizedBox(
+              child: Container(
+                  color: Color.fromARGB(255, 188, 224, 241),
+                  child: Text(title, textScaleFactor: 2,)),
+            ) // Adjust the spacing between the image and the text field
+          ],
+        ),
+      ),
+    );
   }
 }

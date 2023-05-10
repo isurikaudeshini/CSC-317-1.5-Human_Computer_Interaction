@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         index: myIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 3, 160, 254),
+          backgroundColor: Color(0xFF1976D2),
           showUnselectedLabels: false,
           type: BottomNavigationBarType.shifting,
           onTap: (index) {

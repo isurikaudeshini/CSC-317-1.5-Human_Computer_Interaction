@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../dummy_data.dart';
+import '../data/dummy_data.dart';
 import '../widgets/shoe_item.dart';
+import '../theme/custom_app_theme.dart';
 import '../components/tryOnAppbar.dart';
 
 class TryOnShoes extends StatelessWidget {
@@ -40,8 +41,11 @@ class TryOnShoes extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: customAppBarDe(context),
-          automaticallyImplyLeading: false,
+          elevation: 0,
+          backgroundColor: Color(0xFF1976D2),
+          centerTitle: true,
+          title: Text(categoryTitle!, style: AppThemes.detailsAppBar,),
+          // automaticallyImplyLeading: false,
         ),
         body: ShoeItem(
           imageUrl: imageUrl,

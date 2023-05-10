@@ -15,4 +15,4 @@ Map<int, Color> color = {
 };
 
 final MaterialColor darkBlueSwatch =
-    MaterialColor(const Color(0xff69aae0).value, color);
+    MaterialColor(const Color(0xFF1976D2).value, color);

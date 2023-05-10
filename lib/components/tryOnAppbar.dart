@@ -12,15 +12,15 @@ PreferredSize? customAppBarDe(ctx, String title) {
       backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(title, style: AppThemes.detailsAppBar),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(ctx);
-        },
-        icon: Icon(
-          Icons.arrow_back,
-          color: AppConstantsColor.darkTextColor,
-        ),
-      ),
+      // leading: IconButton(
+      //   onPressed: () {
+      //     Navigator.pop(ctx);
+      //   },
+      // icon: Icon(
+      //   Icons.arrow_back,
+      //   color: AppConstantsColor.darkTextColor,
+      // ),
+      // ),
     ),
   );
 }

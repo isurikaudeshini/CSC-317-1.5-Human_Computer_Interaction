@@ -71,7 +71,7 @@ class WavyFooter extends StatelessWidget {
               begin: Alignment.center,
               end: Alignment.bottomRight),
         ),
-        height: MediaQuery.of(context).size.height / 3,
+        height: MediaQuery.of(context).size.height / 5,
       ),
     );
   }
