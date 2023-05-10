@@ -25,6 +25,7 @@ class _SizePredictionState extends State<SizePrediction> {
   String? _textData;
   double? parsedValue;
   bool isLoading = false;
+  bool afterLoading = false;
 
   Future sendImageToServer() async {
     print('Sending Image to Server... ============');
@@ -42,10 +43,18 @@ class _SizePredictionState extends State<SizePrediction> {
         isLoading = false;
         _textData = value;
         parsedValue = double.parse(_textData!.split(":")[1].trim());
+        afterLoading = true;
       });
     });
+  }
 
-    
+  Future resetPage() async {
+    setState(() {
+      afterLoading = false;
+      isLoading = false;
+      imageFile = null;
+      _textData = 'Loading...';
+    });
   }
 
   Future pickImage(ImageSource source) async {
@@ -144,91 +153,143 @@ class _SizePredictionState extends State<SizePrediction> {
     return -1;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      backgroundColor: Color.fromARGB(255, 229, 232, 234),
-      body: Column(
-        children: [
-          const Spacer(),
-          imageFile == null
-              ? const Text(
-                  'No Image Selected',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              : Column(
-                  children: [
-                    Image.file(
-                      imageFile!,
-                      width: MediaQuery.of(context).size.width * 0.65,
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      fit: BoxFit.cover,
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        backgroundColor: Color.fromARGB(255, 229, 232, 234),
+        body: Column(
+          children: [
+            const Spacer(),
+            imageFile == null
+                ? const Text(
+                    'No Image Selected',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 15),
-                    isLoading
-                        ? const SpinKitThreeBounce(
-                            color: Colors.white,
-                            size: 35.0,
-                          )
-                        : DataTable(columns: const [
-                            DataColumn(label: Text('Unit')),
-                            DataColumn(label: Text('Value'))
-                          ], rows: [
-                            DataRow(cells: [
-                              const DataCell(Text('US')),
-                              DataCell(Text(getUS(parsedValue!).toString()))
+                  )
+                : Column(
+                    children: [
+                      Image.file(
+                        imageFile!,
+                        width: MediaQuery.of(context).size.width * 0.65,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 15),
+                      isLoading
+                          ? const SpinKitThreeBounce(
+                              color: Colors.white,
+                              size: 35.0,
+                            )
+                          : DataTable(columns: const [
+                              DataColumn(label: Text('Unit')),
+                              DataColumn(label: Text('Value'))
+                            ], rows: [
+                              DataRow(cells: [
+                                const DataCell(Text('US')),
+                                DataCell(Text(getUS(parsedValue!).toString()))
+                              ]),
+                              DataRow(cells: [
+                                const DataCell(Text('Euro')),
+                                DataCell(Text(getEURO(parsedValue!).toString()))
+                              ]),
+                              DataRow(cells: [
+                                const DataCell(Text('UK')),
+                                DataCell(Text(getEURO(parsedValue!).toString()))
+                              ]), DataRow(cells: [
+                                const DataCell(Text('cm')),
+                                DataCell(Text(parsedValue!.toStringAsFixed(2)))
+                              ])
                             ]),
-                            DataRow(cells: [
-                              const DataCell(Text('Euro')),
-                              DataCell(Text(getEURO(parsedValue!).toString()))
-                            ]),
-                            DataRow(cells: [
-                              const DataCell(Text('UK')),
-                              DataCell(Text(getEURO(parsedValue!).toString()))
-                            ]),
-                          ]),
-                    Text(parsedValue.toString()),
-                  ],
+
+                      // Text(parsedValue.toString()),
+                    ],
+                  ),
+            const Spacer(),
+            Container(
+              alignment: Alignment.center,
+              child: const Text(
+                'Image Upload and Get Prediction',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-          const Spacer(),
-          Container(
-            alignment: Alignment.center,
-            child: const Text(
-              'Image Upload and Get Prediction',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          const Spacer(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: buildButton(
-              title: 'Pick Gallery Image',
-              icon: Icons.image_outlined,
-              onClicked: () => pickImage(ImageSource.gallery),
-            ),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: buildButton(
-              title: 'Pick Camera Image',
-              icon: Icons.camera_alt_outlined,
-              onClicked: () => pickImage(ImageSource.camera),
-            ),
-          ),
-          const Spacer()
-        ],
-      ),
-    );
+            const Spacer(),
+            afterLoading
+                ? const SizedBox()
+                : SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: buildButton(
+                      title: 'Pick Gallery Image',
+                      icon: Icons.image_outlined,
+                      onClicked: () => pickImage(ImageSource.gallery),
+                    ),
+                  ),
+            const SizedBox(height: 12),
+            afterLoading
+                ? const SizedBox()
+                : SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: buildButton(
+                      title: 'Pick Camera Image',
+                      icon: Icons.camera_alt_outlined,
+                      onClicked: () => pickImage(ImageSource.camera),
+                    ),
+                  ),
+            afterLoading
+                ? SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: buildButton(
+                      title: 'Back to Check Page',
+                      icon: Icons.camera_alt_outlined,
+                      onClicked: () => resetPage(),
+                    ),
+                  )
+                : const SizedBox(),
+            const Spacer()
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text("Guide to using the module"),
+                      content: SingleChildScrollView(
+                        child: ListBody(children: const <Widget>[
+                          Text('Step 1:',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('Place an A4 size paper on the floor.'),
+                          SizedBox(height: 8.0),
+                          Text('Step 2:',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(
+                              'Place your feet on the paper, with the bottom of your feet aligned with the bottom edge of the paper.'),
+                          SizedBox(height: 8.0),
+                          Text('Step 3:',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(
+                              'Take a picture of the paper along with your feet. Repeat until satisfied.'),
+                          SizedBox(height: 8.0),
+                          Text('Step 4:',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(
+                              'Click on the proceed icon to get your calculated shoe size.'),
+                        ]),
+                      ),
+                    ));
+          },
+          tooltip: 'popup',
+          child: const Icon(Icons.help),
+        ));
   }
 }
 
