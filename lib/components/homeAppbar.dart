@@ -13,7 +13,7 @@ PreferredSize? customAppBar() {
       backgroundColor: Colors.transparent,
       title: Padding(
         padding: EdgeInsets.only(top: 8.0),
-        child: Text("Discover", style: AppThemes.homeAppBar),
+        child: Text("FootGear", style: AppThemes.homeAppBar),
       ),
       actions: [
         Padding(
