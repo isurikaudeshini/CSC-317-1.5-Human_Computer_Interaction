@@ -4,7 +4,7 @@ import 'screens/categoriesScreen.dart';
 import 'screens/try_on_shoes.dart';
 import 'screens/feetSizePrediction.dart';
 import 'components/homeAppbar.dart';
-import './colors.dart';
+import 'utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Foot Gear',
       theme: ThemeData(
+        primarySwatch: darkBlueSwatch,
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
             bodyLarge: const TextStyle(color: Colors.black),

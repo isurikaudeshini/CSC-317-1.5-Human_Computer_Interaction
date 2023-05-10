@@ -10,7 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:path/path.dart' as p;
 import 'package:http/http.dart' as http;
 
-import '../colors.dart';
+import '../utils/colors.dart';
 
 class SizePrediction extends StatefulWidget {
   const SizePrediction({super.key, required this.title});
@@ -161,7 +161,7 @@ class _SizePredictionState extends State<SizePrediction> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        backgroundColor: Color.fromARGB(255, 229, 232, 234),
+        backgroundColor: const Color.fromARGB(255, 229, 232, 234),
         body: Column(
           children: [
             const Spacer(),
@@ -303,7 +303,7 @@ Widget buildButton({
     style: ElevatedButton.styleFrom(
       minimumSize: const Size.fromHeight(56),
       backgroundColor: Colors.white,
-      foregroundColor: darkBlueSwatch[800],
+      foregroundColor: color[800],
       textStyle: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,

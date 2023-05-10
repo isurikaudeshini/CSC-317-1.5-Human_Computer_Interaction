@@ -16,10 +16,7 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('FootGear'),
-      ),
-      // appBar: customAppBar(),
+      appBar: customAppBar(),
       body: Stack(
         children: [
           Align(
@@ -31,10 +28,11 @@ class MyHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.3)),
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 2.3),
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 40.0, bottom: 10),

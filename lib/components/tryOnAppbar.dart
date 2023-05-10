@@ -1,20 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:foot_gear/components/homeAppbar.dart';
 import '../theme/custom_app_theme.dart';
 import '../utils/constants.dart';
 
-PreferredSize? customAppBarDe(ctx) {
-
-
+PreferredSize? customAppBarDe(ctx, String title) {
   return PreferredSize(
     preferredSize: const Size.fromHeight(60),
     child: AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
       centerTitle: true,
-      title: Text("Try on", style: AppThemes.detailsAppBar),
+      title: Text(title, style: AppThemes.detailsAppBar),
       leading: IconButton(
         onPressed: () {
           Navigator.pop(ctx);
@@ -24,12 +21,6 @@ PreferredSize? customAppBarDe(ctx) {
           color: AppConstantsColor.darkTextColor,
         ),
       ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.favorite_border),
-        ),
-      ],
     ),
   );
 }
