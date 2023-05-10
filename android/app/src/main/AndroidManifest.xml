@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.foot_gear">
    <application
-        android:label="foot_gear"
+        android:label="FootGear"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
