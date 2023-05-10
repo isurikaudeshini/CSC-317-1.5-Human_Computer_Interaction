@@ -15,62 +15,72 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // appBar: customAppBar(),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 2.3)),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 40.0, bottom: 10),
-                child: Text(
-                  'Heyy THere!',
-                  style: TextStyle(
-                      fontSize: 30, color: Color.fromARGB(255, 74, 35, 90)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('FootGear'),
+      ),
+      // appBar: customAppBar(),
+      body: Stack(
+        children: [
+          Align(
+            alignment: AlignmentDirectional.topEnd,
+            child: Background(),
+          ),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 2.3)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              GestureDetector(
+                const Padding(
+                  padding: EdgeInsets.only(left: 40.0, bottom: 10),
+                  child: Text(
+                    'Heyy THere!',
+                    style: TextStyle(
+                        fontSize: 30, color: Color.fromARGB(255, 74, 35, 90)),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SizePrediction(
+                                  title: 'title',
+                                )),
+                      );
+                    },
+                    child: roundedRectButton(
+                      "Check Size",
+                      gradients,
+                    )),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SizePrediction(
-                                title: 'title',
-                              )),
+                          builder: (context) => CategoriesScreen()),
                     );
                   },
                   child: roundedRectButton(
-                    "Check Size",
+                    "Try on?",
                     gradients,
-                  )),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CategoriesScreen()),
-                  );
-                },
-                child: roundedRectButton(
-                  "Try on?",
-                  gradients,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

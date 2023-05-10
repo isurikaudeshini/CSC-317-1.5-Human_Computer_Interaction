@@ -11,18 +11,23 @@ const List<Color> aquaGradients = [
   Color.fromARGB(255, 175, 208, 227),
 ];
 
-class Background extends StatelessWidget{
-
+class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(children: [
-        new Stack(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
-              Image.asset('assets/images/collaboration.png', width: MediaQuery.of(context).size.width/1.5,),
               WavyHeader(),
+              Image.asset(
+                'assets/images/collaboration.png',
+                width: MediaQuery.of(context).size.width / 1,
+              ),
             ],
           ),
           Expanded(child: Container()),
@@ -32,28 +37,28 @@ class Background extends StatelessWidget{
               WavyFooter(),
             ],
           )
-      ],),
+        ],
+      ),
     );
   }
 }
+
 class WavyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-     return ClipPath(
+    return ClipPath(
         clipper: TopWaveClipper(),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-               colors: orangeGradients,
-               begin: Alignment.topLeft,
-               end: Alignment.center
-            )
-          ),
-          height: MediaQuery.of(context).size.height / 2.5,
-        )
-     );
+              gradient: LinearGradient(
+                  colors: orangeGradients,
+                  begin: Alignment.topLeft,
+                  end: Alignment.center)),
+          height: MediaQuery.of(context).size.height / 2,
+        ));
   }
 }
+
 class WavyFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -71,9 +76,6 @@ class WavyFooter extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class TopWaveClipper extends CustomClipper<Path> {
   @override
@@ -110,6 +112,7 @@ class TopWaveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
 class FooterWaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

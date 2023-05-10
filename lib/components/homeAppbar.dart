@@ -7,7 +7,7 @@ import '../../../utils/constants.dart';
 
 PreferredSize? customAppBar() {
   return PreferredSize(
-    preferredSize: Size.fromHeight(20),
+    preferredSize: Size.fromHeight(50),
     child: AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -18,25 +18,9 @@ PreferredSize? customAppBar() {
       actions: [
         Padding(
           padding: EdgeInsets.only(top: 8.0),
-          child: IconButton(
-            icon: FaIcon(
-              CupertinoIcons.search,
-              color: AppConstantsColor.darkTextColor,
-              size: 25,
-            ),
-            onPressed: () {},
-          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 8.0, right: 4),
-          child: IconButton(
-            icon: FaIcon(
-              CupertinoIcons.bell,
-              color: AppConstantsColor.darkTextColor,
-              size: 25,
-            ),
-            onPressed: () {},
-          ),
         ),
       ],
     ),

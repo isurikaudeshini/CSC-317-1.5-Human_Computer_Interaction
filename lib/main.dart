@@ -50,7 +50,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int myIndex = 0;
   int index = 0;
-  List<Widget> widgetList = [const MyHome(),CategoriesScreen(),SizePrediction(title: 'Check Size')];
+  List<Widget> widgetList = [
+    const MyHome(),
+    CategoriesScreen(),
+    SizePrediction(title: 'Check Size')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: 'Home',
                 backgroundColor: Color.fromARGB(255, 93, 173, 226)),
             BottomNavigationBarItem(
+                icon: Icon(Icons.shop),
+                label: 'Try On',
+                backgroundColor: Color.fromARGB(255, 93, 173, 226)),
+            BottomNavigationBarItem(
                 icon: Icon(Icons.straighten),
                 label: 'Check Size',
                 backgroundColor: Color.fromARGB(255, 93, 173, 226)),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shop),
-                label: 'Try On',
-                backgroundColor: Color.fromARGB(255, 93, 173, 226))
           ]),
     );
   }
