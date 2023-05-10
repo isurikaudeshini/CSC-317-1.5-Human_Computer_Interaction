@@ -20,9 +20,10 @@ class TryOnShoes extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
+    final categoryImage = routeArgs['image'];
 
-    String imageUrl= '';
-    String snapchatUrl= '';
+    String imageUrl = '';
+    String snapchatUrl = '';
 
     for (var shoe in DUMMY_SHOES) {
       if (shoe.id == categoryId) {
@@ -39,9 +40,13 @@ class TryOnShoes extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: customAppBarDe(context), automaticallyImplyLeading: false,
+          title: customAppBarDe(context),
+          automaticallyImplyLeading: false,
         ),
-        body: ShoeItem(imageUrl: imageUrl, snapchatUrl: snapchatUrl,)
+        body: ShoeItem(
+          imageUrl: imageUrl,
+          snapchatUrl: snapchatUrl,
+        )
 
         // Center(
         //   child: Column(

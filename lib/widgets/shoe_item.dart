@@ -39,7 +39,7 @@ class ShoeItem extends StatelessWidget {
               child: Image.asset(
                 imageUrl,  //image
                 height: 300,
-                width: double.infinity, fit: BoxFit.cover,
+                width: double.infinity,
               ),
             ),
             OutlinedButton(
